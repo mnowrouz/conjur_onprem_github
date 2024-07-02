@@ -1,0 +1,20 @@
+on: [push]
+
+jobs:
+  test:
+    # ...
+    runs-on: self-hosted
+    steps:
+      # ...
+      - name: Import Secrets using CyberArk Conjur Secret Fetcher Action
+        uses: cyberark/conjur-action@v2.0.5
+        with:
+          #url: ${{ secrets.CONJUR_URL }}
+          url: https://18.234.107.127/
+          account: clango
+          host_id: host/GitHub/GitHubPOC
+          api_key: 37de11v3thvh382q8qpf03th9etp20j6yfxcxhe53qesk5d1b4ddtm
+          secrets: Vault/app/GitHub_Conjur_sync/Database-MSSql-1.1.1.1-testuser/password|GithubPW
+      #- name: write secret
+      #  run: printenv GITHUBPW | sed 's/./& /g'
+      # ...
