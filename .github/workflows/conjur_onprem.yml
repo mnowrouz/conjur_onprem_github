@@ -10,12 +10,11 @@ jobs:
         uses: cyberark/conjur-action@v2.0.5
         with:
           #url: ${{ secrets.CONJUR_URL }}
-          url: https://18.234.107.127/
+          url: https://18.234.107.127
           account: clango
           host_id: host/GitHub/GitHubPOC
           api_key: 37de11v3thvh382q8qpf03th9etp20j6yfxcxhe53qesk5d1b4ddtm
           secrets: Vault/app/GitHub_Conjur_sync/Database-MSSql-1.1.1.1-testuser/password|GithubPW
-          certificate: MIIDAzCCAeugAwIBAgIQc+LAZz7AgoVFueKK/+4xHzANBgkqhkiG9w0BAQsFADAUMRIwEAYDVQQDEwlDT05KVVItQ0EwHhcNMjIwNTI0MTQxNDExWhcNMjcwNTI0MTQyNDExWjAUMRIwEAYDVQQDEwlDT05KVVItQ0EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDHqfkatACCPXzDpkdNS8ofaQzPnIDRNFmm9YLx/UbPv6wPHbkJ+/zBFc+21zuslBK0/uqgWyfL6b5spizWgFGUjQfjnSebsk/d6BaymokV7oPiT9+7FxUzt1NkWx6oWulcICyHIdJhLc7Fi6Qb1FWr2lj72DyeugaMcxrFFLePBSdcZwA8GwZA+LJjp3wIp++DA7RB17T/xcMAuue4fLfQ7O15bo7gt9yB4PXCtfmtVLAOscg+zsjOze32prTrPL6S+C0Vb9041JaWdSTHQ7W+0qymXsDtF/lvNgg4jFpaQ9JyzNZPHufXJ0w+WOZS4ZQR7l+qAmFRZo274J1Jt8AFAgMBAAGjUTBPMAsGA1UdDwQEAwIBhjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBTOWVvCzP5IlcELL6+YPKIX/hpycTAQBgkrBgEEAYI3FQEEAwIBADANBgkqhkiG9w0BAQsFAAOCAQEAJmbkXw4cenxIK1HeEvK1P4PggBgXLNkJB8w+tS95j3HFBd2HHuwguuDJwsxQT3K3L5m/F253RpQbvLcQLM3xtn6u0qviRXfN0ISsvMxs2yC6QvwVCUHqYpF7+NXh/v/I0YsjWidGHdW9X97mdE4E87+GQr0NyZ4IqGqKDh+e1cHnpXBNMqiqhUzvdULbwmaAVxLRq7+KGAefuHWy9JYd5QE0JbPMjmZ00SmaOMx1AOmfOb/UohYCCetVxprWONnOLFsIJL17m/YyHezyYveLDmBROrqf0hxyWfv3Z6IuAT0+hSBcELlqN8kMkV/vC1zNUwZf3XT2BjhJiHP8kJg4ww==
       #- name: write secret
       #  run: printenv GITHUBPW | sed 's/./& /g'
       # ...
