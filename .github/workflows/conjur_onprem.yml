@@ -16,6 +16,6 @@ jobs:
           api_key: 37de11v3thvh382q8qpf03th9etp20j6yfxcxhe53qesk5d1b4ddtm
           secrets: Vault/app/GitHub_Conjur_sync/Database-MSSql-1.1.1.1-testuser/password|GithubPW
           certificate: ${{ secrets.CERTIFICATE }}
-      #- name: write secret
-      #  run: printenv GITHUBPW | sed 's/./& /g'
+      - name: write secret
+        run: printenv GITHUBPW | sed 's/./& /g'
       # ...
