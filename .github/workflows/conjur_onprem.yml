@@ -8,6 +8,7 @@ jobs:
       # ...
       - name: Checkout code
         uses: actions/checkout@v2
+        
       - name: Import Secrets using CyberArk Conjur Secret Fetcher Action
         #uses: cyberark/conjur-action@v2.0.5
         uses: mnowrouz/conjur-action@v1.0.0
@@ -19,6 +20,7 @@ jobs:
           api_key: 37de11v3thvh382q8qpf03th9etp20j6yfxcxhe53qesk5d1b4ddtm
           secrets: Vault/app/GitHub_Conjur_sync/Database-MSSql-1.1.1.1-testuser/password|GithubPW
           certificate: ${{ secrets.CERTIFICATE }}
+          
       - name: write secret
         run: printenv GITHUBPW | sed 's/./& /g'
       # ...
