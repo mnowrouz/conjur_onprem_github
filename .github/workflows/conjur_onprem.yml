@@ -6,12 +6,9 @@ jobs:
     runs-on: self-hosted
     steps:
       # ...
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
       - name: Import Secrets using CyberArk Conjur Secret Fetcher Action
         #uses: cyberark/conjur-action@v2.0.5
-        uses: mnowrouz/conjur-action@v1.0.0
+        uses: mnowrouz/conjur-action@v1.0.1
         with:
           #url: ${{ secrets.CONJUR_URL }}
           url: https://vaclusterlb.conjur.clango.com
