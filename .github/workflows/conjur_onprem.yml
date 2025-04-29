@@ -1,19 +1,30 @@
-name: Show JWT
+name: Expose GitHub JWT
 
 on:
   workflow_dispatch:
 
 jobs:
-  expose-jwt:
+  fetch-jwt:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write  # REQUIRED to retrieve the OIDC token
+      id-token: write  # Required to fetch the OIDC token
+
     steps:
+      - name: Install jq (if not present)
+        run: sudo apt-get update && sudo apt-get install -y jq
+
       - name: Request GitHub OIDC JWT
-        id: fetch-jwt
+        id: get-jwt
         run: |
           echo "Requesting token..."
           token=$(curl -s -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
-                       "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=your-audience-value" | jq -r .value)
-          echo "::add-mask::$token"  # Hides it from logs
-          echo "JWT: $token"
+                   "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=github-actions" | jq -r .value)
+
+          echo "$token" > jwt.txt
+          echo "JWT saved to jwt.txt (masked in logs by GitHub)"
+
+      - name: Upload JWT as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: jwt-token
+          path: jwt.txt
