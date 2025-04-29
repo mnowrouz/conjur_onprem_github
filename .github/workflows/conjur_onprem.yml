@@ -1,23 +1,19 @@
-on: [push]
+name: Show JWT
+
+on:
+  workflow_dispatch:
 
 jobs:
-  test:
-    # ...
-    runs-on: self-hosted
+  expose-jwt:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # REQUIRED to retrieve the OIDC token
     steps:
-      # ...
-      - name: Import Secrets using CyberArk Conjur Secret Fetcher Action
-        #uses: cyberark/conjur-action@v2.0.5
-        uses: mnowrouz/conjur-action@v1.0.4
-        with:
-          #url: ${{ secrets.CONJUR_URL }}
-          url: https://vaclusterlb.conjur.clango.com
-          account: clango
-          host_id: host/GitHub/GitHubPOC
-          api_key: 37de11v3thvh382q8qpf03th9etp20j6yfxcxhe53qesk5d1b4ddtm
-          secrets: Vault/app/GitHub_Conjur_sync/Database-MSSql-1.1.1.1-testuser/password|GithubPW
-          certificate: ${{ secrets.CERTIFICATE }}
-          
-      - name: write secret
-        run: printenv GITHUBPW | sed 's/./& /g'
-      # ...
+      - name: Request GitHub OIDC JWT
+        id: fetch-jwt
+        run: |
+          echo "Requesting token..."
+          token=$(curl -s -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+                       "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=your-audience-value" | jq -r .value)
+          echo "::add-mask::$token"  # Hides it from logs
+          echo "JWT: $token"
