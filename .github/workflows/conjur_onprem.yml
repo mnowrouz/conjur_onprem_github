@@ -24,7 +24,7 @@ jobs:
           echo "JWT saved to jwt.txt (masked in logs by GitHub)"
 
       - name: Upload JWT as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: jwt-token
           path: jwt.txt
