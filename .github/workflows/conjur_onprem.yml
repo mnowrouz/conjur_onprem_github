@@ -16,7 +16,7 @@ jobs:
         uses: cyberark/conjur-action@v2.0.6
         with:
           url: https://ip-10-0-0-167.ec2.internal
-          account: conjur
+          account: majorkey
           authn_id: authn-jwt/github
           secrets: Vault/app1/LAB_github-actions_authn-JWT/Operating System-AutomationUser-test-test_username/username|username;Vault/app1/LAB_github-actions_authn-JWT/Operating System-AutomationUser-test-test_username/password|password
           certificate: |
