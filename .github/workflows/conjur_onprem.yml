@@ -1,4 +1,4 @@
-
+name: conjur_secret_retrieval
 
 on:
   workflow_dispatch:
